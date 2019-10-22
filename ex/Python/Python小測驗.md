@@ -1,28 +1,28 @@
 # 程式閱讀題
 ```
-1.print("3*2*(17-2)")會印出甚麼結果:
+1.print("3*2*(17-2)")會印出甚麼結果: (D)
 (A)0   (B)90  (C)出現錯誤,無法印出  (D)3*2*(17-2)
 
-2.print(3*2*(17-2))會印出甚麼結果:
+2.print(3*2*(17-2))會印出甚麼結果: (B)
 (A)0   (B)90  (C)出現錯誤,無法印出  (D)3*2*(17-2)
 
-3.print("abc""+""def")會印出甚麼結果:
+3.print("abc""+""def")會印出甚麼結果: (B)
 (A)出現錯誤,無法印出   (B)abc+def  (C)abc""+""def  (D)abcdef
 
-4.print("abc"+"def")會印出甚麼結果:
+4.print("abc"+"def")會印出甚麼結果: (D)
 (A)出現錯誤,無法印出   (B)abc+def  (C)abc""+""def  (D)abcdef
 
-5.底下程式執行後結果為何?
+5.底下程式執行後結果為何? (C)
 word = "arttarataaa"
 print(word.replace("a", "z",3))
 (A)出現錯誤,無法印出   (B)arttarataaa  (C)zrttzrztaaa (D)zrttzrztzzz
 
-6.底下程式執行後結果為何?
+6.底下程式執行後結果為何? (D) 
 word = "arttarataaa"
 print(word.replace("a", "z"))
 (A)出現錯誤,無法印出   (B)arttarataaa  (C)zrttzrztaaa (D)zrttzrztzzz
 
-7根據底下程式,下列敘述何者為非?[複選題]
+7根據底下程式,下列敘述何者為非?[複選題] (B)(D)
 
 names = ['龍', '聖']
 index = 0
