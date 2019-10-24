@@ -54,9 +54,8 @@ import cmath
 x=0
 def s(x,y,z):
   a=cmath.sqrt(x+y+z).real
-  b=int(cmath.sqrt(x+y+z).real)
-  return a-b
-while s(x,100,0)>0 or s(x,100,168)>0 :
+  return not(a%1==0)
+while s(x,100,0) or s(x,100,168) :
   x+=1
 print(x)
 ```
