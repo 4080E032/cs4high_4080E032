@@ -3,24 +3,6 @@
 Markdown文件
 https://markdown.tw/
 ```
-# 
-```
-Network Types: LAN, WAN, PAN, CAN, MAN, SAN, WLAN
-https://www.youtube.com/watch?v=4_zSIXb7tLQ
-```
-```
-Network Topologies (Star, Bus, Ring, Mesh, Ad hoc, Infrastructure, & Wireless Mesh Topology)
-https://www.youtube.com/watch?v=zbqrNg4C98U
-```
-
-```
-What is a DMZ? (Demilitarized Zone)
-https://www.youtube.com/watch?v=dqlzQXo1wqo
-```
-```
-NAT Explained - Network Address Translation
-https://www.youtube.com/watch?v=FTUV0t6JaDA
-```
 # 網路硬體
 
 ```
@@ -64,7 +46,7 @@ IEEE 802.1：高層區域網路協定（Bridging (networking) and Network Manage
 IEEE 802.2：邏輯鏈路控制（Logical link control）
 
 區域網路用的協定:
-[超級重要]IEEE 802.3：乙太網路（Ethernet）
+[超級重要]IEEE 802.3：乙太網路（Ethernet）:標準集中在OSI模型中的實體層和MAC子層，而且僅針對於乙太網路的「有線」傳輸。除了區域網路採用這方面的連線技術規格，在廣域網路裡面，也應用部分的技術標準
 IEEE 802.4：權杖匯流排（Token bus）
 IEEE 802.5：權杖環（Token-Ring）
 
@@ -74,7 +56,7 @@ IEEE 802.7：寬頻TAG（Broadband LAN using Coaxial Cable）
 IEEE 802.8：光纖分散式資料介面（FDDI）
 IEEE 802.9：綜合業務區域網路（Integrated Services LAN）
 IEEE 802.10：區域網路網路安全（Interoperable LAN Security）
-[超級重要]IEEE 802.11：無線區域網路（Wireless LAN & Mesh）
+[超級重要]IEEE 802.11：無線區域網路（Wireless LAN & Mesh）:主要以5GHz及2.4GHz兩個無線電頻率，讓兩臺電腦或端點，彼此間發送電波以傳輸資料，建立區域網路或廣域網路的技術。
 IEEE 802.12：需求優先級（Demand priority）
 IEEE 802.13：（未使用）
 IEEE 802.14：電纜數據機（Cable modems）
