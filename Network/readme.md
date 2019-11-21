@@ -120,6 +120,10 @@ ICMP 封包格式，其各欄位功能如下：
 17 Address Mask Request（位址遮罩要求）
 18 Address Mask Reply（位址遮罩回覆）
 ```
+### ICMP Destination Unreachable『回聲要求』（Echo Request）（Type 8）『回聲回應』（Echo Replay）（Type 0）
+```
+![『回聲要求』（Echo Request）（Type 8）『回聲回應』（Echo Replay）（Type 0）](13-16.png)
+```
 ### ICMP Destination Unreachable（目的地無法到達，Type 3）
 ```
 0: Network Unreachable（無法到達目的網路）
@@ -136,23 +140,32 @@ ICMP 封包格式，其各欄位功能如下：
 11: Network Unreachable for Type of Service（無法到達此型態的網路服務）
 12: Host Unreachable for Type of Service（無法到達此型態的主機服務）
 ```
+### 用ICMP Redirect （改變傳輸路徑，Type 5）
+```
+0: Redirect Datagram for the Net（網路變更而轉向）
+
+1: Redirect Datagram for the Host（主機變更而轉向）
+
+2: Redirect Datagram for the Type of Service and Net（網路和服務型態變更而轉向）
+
+3: Redirect Datagram for the Type of Service and Host（主機和服務型態變更而轉向）
+```
 ### ICMP 封裝
 
 ![ICMP 封裝](icmp_encap.gif)
 
 ### ICMP 常用指令
 ```
-命令：
+ping 
+tracert| Traceroute
+在上限 30 個躍點上
+追蹤 www.ksu.edu.tw [120.114.100.65] 的路由:
 
-C:\>tracert 11.1.0.1
-命令的輸出：
+  1    <1 ms     1 ms    <1 ms  172.20.155.254
+  2    <1 ms    <1 ms    <1 ms  120-114-50-230.ksu.edu.tw [120.114.50.230]
+  3    <1 ms    <1 ms    <1 ms  www.ksu.edu.tw [120.114.100.65]
 
-   Tracing route to 11.1.0.1 over a maximum of 30 hops
-   ---------------------------------------------------
-   1      2 ms       3 ms       2 ms      157.54.48.1
-   2     75 ms      83 ms      88 ms      11.1.0.67
-   3     73 ms      79 ms      93 ms      11.1.0.1
-
+追蹤完成。
 ```
 ```
 tracert www.pchome.com.tw
