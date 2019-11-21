@@ -122,7 +122,7 @@ ICMP 封包格式，其各欄位功能如下：
 ```
 ### ICMP Destination Unreachable『回聲要求』（Echo Request）（Type 8）『回聲回應』（Echo Replay）（Type 0）
 ```
-![『回聲要求』（Echo Request）（Type 8）『回聲回應』（Echo Replay）（Type 0）](http://www.tsnien.idv.tw/Network_WebBook/%E6%8F%92%E5%9C%96/chap13/13-16.png)
+![『回聲要求』（Echo Request）（Type 8）『回聲回應』（Echo Replay）（Type 0）](chap13/13-16.png)
 ```
 ### ICMP Destination Unreachable（目的地無法到達，Type 3）
 ```
