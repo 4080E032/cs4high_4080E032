@@ -17,7 +17,9 @@ Layer-7: L7 switch, proxy
 
 # 網路協定:
 ```
-協定(protocol):
+協定(protocol):會定義資料格式、編碼機制、錯誤處理、以及資料在網路上傳輸的順序。
+無線射頻辨識 RFID(Radio Frequency IDentification)
+近距離無線通訊 NFC（Near-field communication）
 ```
 # 網際層（Internet Layer）[OSI 參考模式的網路層]協定:
 ```
@@ -231,10 +233,11 @@ ICMP 封包格式，其各欄位功能如下：
 ```
 ### ICMP Destination Unreachable『回聲要求』（Echo Request）（Type 8）『回聲回應』（Echo Replay）（Type 0）
 ```
-![『回聲要求』（Echo Request）（Type 8）『回聲回應』（Echo Replay）（Type 0）](chap13/13-16.png)
+![ICMP 封裝](icmp_encap.gif)
 ```
 ### ICMP Destination Unreachable（目的地無法到達，Type 3）
 ```
+![ICMP 封裝](icmp_encap.gif)
 0: Network Unreachable（無法到達目的網路）
 1: Host Unreachable（無法到達目的主機）
 2: Protocol Unreachable（通訊協定不存在）
@@ -250,6 +253,7 @@ ICMP 封包格式，其各欄位功能如下：
 12: Host Unreachable for Type of Service（無法到達此型態的主機服務）
 ```
 ### 用ICMP Redirect （改變傳輸路徑，Type 5）
+![ICMP 封裝](icmp_encap.gif)
 ```
 0: Redirect Datagram for the Net（網路變更而轉向）
 
@@ -292,8 +296,55 @@ tracert www.pchome.com.tw
 ```
 ### TCP vs UDP 
 ```
-TCP vs UDP Comparison
-https://www.youtube.com/watch?v=uwoD5YsGACg
+TCP(Transmission Control Protocol):是一種連接導向的、可靠的、基於位元組流的傳輸層通信協定，由IETF的RFC 793定義。在簡化的電腦網路OSI模型中，它完成第四層傳輸層所指定的功能。用戶資料報協定（UDP）是同一層內另一個重要的傳輸協定。
+UDP(User Datagram Protocol):只提供資料的不可靠傳遞，它一旦把應用程式發給網路層的資料傳送出去就不保留資料備份，
+UDP在IP資料報的頭部僅僅加入了復用和資料校驗欄位。
+```
+### TCP封包結構
+```
+![ICMP 封裝](icmp_encap.gif)
+來源連接埠（16位元長）－辨識傳送連接埠
+目的連接埠（16位元長）－辨識接收連接埠
+序列號（seq，32位元長）
+如果含有同步化旗標（SYN），則此為最初的序列號；第一個資料位元的序列碼為本序列號加一。
+如果沒有同步化旗標（SYN），則此為第一個資料位元的序列碼。
+確認號（ack，32位元長）—期望收到的資料的開始序列號。也即已經收到的資料的位元組長度加1。
+資料偏移（4位元長）—以4位元組為單位計算出的資料段開始位址的偏移值。
+保留（3位元長）—須置0
+標誌符（9位元長）
+NS—ECN-nonce。
+CWR—Congestion Window Reduced。
+ECE—ECN-Echo有兩種意思，取決於SYN標誌的值。
+URG—為1表示高優先級封包，緊急指標欄位有效。
+ACK—為1表示確認號欄位有效
+PSH—為1表示是帶有PUSH標誌的資料，指示接收方應該儘快將這個報文段交給應用層而不用等待緩衝區裝滿。
+RST—為1表示出現嚴重差錯。可能需要重新建立TCP連接。還可以用於拒絕非法的報文段和拒絕連接請求。
+SYN—為1表示這是連接請求或是連接接受請求，用於建立連接和使順序號同步
+FIN—為1表示傳送方沒有資料要傳輸了，要求釋放連接。
+窗口（WIN，16位元長）—表示從確認號開始，本報文的傳送方可以接收的位元組數，即接收窗口大小。用於流量控制。
+校驗和（Checksum，16位元長）—對整個的TCP報文段，包括TCP頭部和TCP資料，以16位元字進行計算所得。這是一個強制性的欄位。
+緊急指標（16位元長）—本報文段中的緊急資料的最後一個位元組的序號。
+選項欄位—最多40位元組。每個選項的開始是1位元組的kind欄位，說明選項的類型。
+0：選項表結束（1位元組）
+1：無操作（1位元組）用於選項欄位之間的字邊界對齊。
+2：最大報文段長度（4位元組，Maximum Segment Size，MSS）通常在建立連接而設定SYN標誌的封包中指明這個選項，指明本端所能接收的最大長度的報文段。通常將MSS設定為（MTU-40）位元組，攜帶TCP報文段的IP資料報的長度就不會超過MTU（MTU最大長度為1518位元組，最短為64位元組），從而避免本機發生IP分片。只能出現在同步報文段中，否則將被忽略。
+3：窗口擴大因子（4位元組，wscale），取值0-14。用來把TCP的窗口的值左移的位數，使窗口值乘倍。只能出現在同步報文段中，否則將被忽略。這是因為現在的TCP接收資料緩衝區（接收窗口）的長度通常大於65535位元組。
+4：sackOK—傳送端支援並同意使用SACK選項。
+5：SACK實際工作的選項。
+8：時間戳（10位元組，TCP Timestamps Option，TSopt）
+傳送端的時間戳（Timestamp Value field，TSval，4位元組）
+時間戳回顯應答（Timestamp Echo Reply field，TSecr，4位元組）
+```
+### UDP的分組結構
+```
+![ICMP 封裝](icmp_encap.gif)
+UDP報頭包括4個欄位，每個欄位占用2個位元組（即16個位元）。在IPv4中，「來源連接埠」和「校驗和」是可選欄位（以粉色背景標出）。在IPv6中，只有來源連接埠是可選欄位。 各16bit的來源埠和目的埠用來標記傳送和接受的應用行程。因為UDP不需要應答，所以來源埠是可選的，如果來源埠不用，那麼置為零。在目的埠後面是長度固定的以位元組為單位的長度域，用來指定UDP資料報包括資料部分的長度，長度最小值為8byte。首部剩下地16bit是用來對首部和資料部分一起做校驗和（Checksum）的，這部分是可選的，但在實際應用中一般都使用這一功能。
+
+封包長度
+該欄位指定UDP報頭和資料總共占用的長度。可能的最小長度是8位元組，因為UDP報頭已經占用了8位元組。由於這個欄位的存在，UDP報文總長不可能超過65535位元組（包括8位元組的報頭，和65527位元組的資料）。實際上通過IPv4協定傳輸時，由於IPv4的頭部資訊要占用20位元組，因此資料長度不可能超過65507位元組（65,535 − 8位元組UDP報頭 − 20位元組IP頭部）。
+在IPv6的jumbogram中，是有可能傳輸超過65535位元組的UDP封包的。依據RFC 2675，如果這種情況發生，報文長度應被填寫為0。
+校驗和
+校驗和欄位可以用於發現頭部資訊和資料中的傳輸錯誤。該欄位在IPv4中是可選的，在IPv6中則是強制的。如果不使用校驗和，該欄位應被填充為全0。
 ```
 
 
