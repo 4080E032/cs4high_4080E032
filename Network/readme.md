@@ -46,7 +46,9 @@ IEEE 802.1：高層區域網路協定（Bridging (networking) and Network Manage
 IEEE 802.2：邏輯鏈路控制（Logical link control）
 
 區域網路用的協定:
-[超級重要]IEEE 802.3：乙太網路（Ethernet）:標準集中在OSI模型中的實體層和MAC子層，而且僅針對於乙太網路的「有線」傳輸。除了區域網路採用這方面的連線技術規格，在廣域網路裡面，也應用部分的技術標準
+[超級重要]IEEE 802.3：乙太網路（Ethernet）:標準集中在OSI模型中的實體層和MAC子層，
+而且僅針對於乙太網路的「有線」傳輸。除了區域網路採用這方面的連線技術規格，在廣域網路裡面
+，也應用部分的技術標準
 IEEE 802.4：權杖匯流排（Token bus）
 IEEE 802.5：權杖環（Token-Ring）
 
@@ -56,7 +58,8 @@ IEEE 802.7：寬頻TAG（Broadband LAN using Coaxial Cable）
 IEEE 802.8：光纖分散式資料介面（FDDI）
 IEEE 802.9：綜合業務區域網路（Integrated Services LAN）
 IEEE 802.10：區域網路網路安全（Interoperable LAN Security）
-[超級重要]IEEE 802.11：無線區域網路（Wireless LAN & Mesh）:主要以5GHz及2.4GHz兩個無線電頻率，讓兩臺電腦或端點，彼此間發送電波以傳輸資料，建立區域網路或廣域網路的技術。
+[超級重要]IEEE 802.11：無線區域網路（Wireless LAN & Mesh）:主要以5GHz及2.4GHz兩個無線電頻率，
+讓兩臺電腦或端點，彼此間發送電波以傳輸資料，建立區域網路或廣域網路的技術。
 IEEE 802.12：需求優先級（Demand priority）
 IEEE 802.13：（未使用）
 IEEE 802.14：電纜數據機（Cable modems）
@@ -117,16 +120,39 @@ ICMP 封包格式，其各欄位功能如下：
 17 Address Mask Request（位址遮罩要求）
 18 Address Mask Reply（位址遮罩回覆）
 ```
+###ICMP Destination Unreachable（目的地無法到達，Type 3）
+```
+0: Network Unreachable（無法到達目的網路）
+1: Host Unreachable（無法到達目的主機）
+2: Protocol Unreachable（通訊協定不存在）
+3: Port Unreachable（無法到達連接埠）
+4: Fragmentation Needed and DF set（資料需分割並設定不可分割位元）
+5: Source Route Failed（來源路徑選擇失敗）
+6: Destination Network Unknown（無法識別目的地網路）
+7: Destination Host Unknown（無法識別目的地主機）
+8: Source Host Isolated（來源主機被隔離）
+9: Communication with Destination Network Administratively Prohibited（管理上禁止和目的地網路通訊）
+10: Communication with Destination Host Administratively Prohibited（管理上禁止和目的地主機通訊）
+11: Network Unreachable for Type of Service（無法到達此型態的網路服務）
+12: Host Unreachable for Type of Service（無法到達此型態的主機服務）
+```
 ### ICMP 封裝
 
 ![ICMP 封裝](icmp_encap.gif)
 
 ### ICMP 常用指令
 ```
-ping 
-tracert| Traceroute
-如何使用 TRACERT 疑難排解 Windows 中的 TCP/IP 問題
-https://support.microsoft.com/zh-tw/help/314868/how-to-use-tracert-to-troubleshoot-tcp-ip-problems-in-windows
+命令：
+
+C:\>tracert 11.1.0.1
+命令的輸出：
+
+   Tracing route to 11.1.0.1 over a maximum of 30 hops
+   ---------------------------------------------------
+   1      2 ms       3 ms       2 ms      157.54.48.1
+   2     75 ms      83 ms      88 ms      11.1.0.67
+   3     73 ms      79 ms      93 ms      11.1.0.1
+
 ```
 ```
 tracert www.pchome.com.tw
@@ -135,8 +161,8 @@ tracert www.pchome.com.tw
 追蹤 www.pchome.com.tw [210.59.230.39] 的路由:
 
   1    <1 ms    <1 ms    <1 ms  172.20.155.254
-  2    10 ms     5 ms     6 ms  172.16.190.253
-  3    <1 ms    13 ms     1 ms  120-114-151-14.ksu.edu.tw [120.114.151.14]
+  2    <1 ms    <1 ms    <1 ms 172.16.190.253
+  3     1 ms     1 ms     1 ms  120-114-151-14.ksu.edu.tw [120.114.151.14]
   4     *        *        *     要求等候逾時。
   5     *        *        *     要求等候逾時。
   6     *        *        *     要求等候逾時。
